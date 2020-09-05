@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+testUpFiles
+<from enctype="multipart/form-data" id="formData">
+    <input type="file" name="file"/>
+    <input type="submit" placeholder="提交" id="submit">
+</from>
+<script type="text/javascript" src="/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+    (function () {
+
+        function upFiles() {
+            var from = document.getElementById("formData");
+            var formData = new FormData(from);
+            $.ajax({
+                url: "upFile",
+                data: formData,
+                datatype: "json",
+                type: "POST",
+                async: true,
+                processData: false,
+                contentType: false,
+                success: function (renponse) {
+                    console.log("success")
+                },
+                error: function () {
+                    console.log("error")
+                },
+                // xhr: function () {
+                //     var xhr = $.ajaxSettings.xhr();
+                //     xhr.upload.addEventListener('progress', function (evt) {
+                //         var loaded = evt.loaded;
+                //         var total = evt.total;
+                //         var percent = loaded / total * 100;
+                //         $('#progress').html(percent.toFixed(2) + "%");
+                //     }, false);
+                //     return xhr;
+                // }
+            })
+        }
+    })()
+</script>
+</body>
+</html>
